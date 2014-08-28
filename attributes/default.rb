@@ -155,3 +155,5 @@ default['openstack']['dashboard']['password_autocomplete'] = 'on'
 default['openstack']['dashboard']['simple_ip_management'] = false
 default['openstack']['dashboard']['neutron']['enable_lb'] = false
 default['openstack']['dashboard']['neutron']['enable_quotas'] = true
+
+default["openstack"]["dashboard"]["openstack_endpoint_type"] = 'publicURL'
