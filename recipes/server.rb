@@ -64,6 +64,8 @@ identity_endpoint = endpoint 'identity-api'
 auth_uri = ::URI.decode identity_endpoint.to_s
 identity_internal_endpoint = endpoint 'identity-api-internal'
 auth_internal_uri = ::URI.decode identity_internal_endpoint.to_s
+identity_public_internal_endpoint = endpoint 'identity-api-public-internal'
+auth_public_internal_uri = ::URI.decode identity_public_internal_endpoint.to_s
 
 case node['openstack']['dashboard']['identity_api_version']
 when 2.0
@@ -75,6 +77,7 @@ end
 auth_admin_uri = auth_uri_transform auth_admin_uri, auth_version
 auth_uri = auth_uri_transform auth_uri, auth_version
 auth_internal_uri = auth_uri_transform auth_internal_uri, auth_version
+auth_public_internal_uri = auth_uri_transform auth_public_internal_uri, auth_version
 
 db_pass = get_password 'db', 'horizon'
 db_info = db 'dashboard'
@@ -114,6 +117,7 @@ template node['openstack']['dashboard']['local_settings_path'] do
     db_pass: db_pass,
     db_info: db_info,
     auth_internal_uri: auth_internal_uri,
+    auth_public_internal_uri: auth_public_internal_uri,
     auth_admin_uri: auth_admin_uri,
     memcached_servers: memcached
   )
